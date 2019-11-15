@@ -25,14 +25,15 @@ export default function Home() {
   const classes = useStyles();
 
   useEffect(() => {
-    document.title = "Conectcar | Portal desenvolvedor vale pedágio";
+    document.title = "IF Restaurante";
   })
+
   return (
     <>
     <div className={classes.container}>
       <div className={classes.home}>
         <h1>Home</h1>
-        <h3>Portal Vale-Pedágio para desenvolvedor.</h3>
+        <h3>IF Restaurante - O melhor delivery de São Paulo!</h3>
         <A href="/documentacao" className={classes.link}>
           <Botao Primaria text="Documentação"></Botao>
         </A>
