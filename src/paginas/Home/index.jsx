@@ -1,30 +1,39 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import '../../estilos/estilosGlobais.css'
+import { A } from "hookrouter";
+import Botao from '../../componentes/Botao'
+import Pizza from '../../imagens/bg_1.png'
 
 const useStyles = makeStyles(tema => ({
-  containerHome: {
-    flexGrow: 1,
-    fontFamily: tema.typography.fontFamily,
-    height: '1280px'
+  anchor: {
+    textDecoration: "none"
+  },
+  icone: {
+    verticalAlign: "middle"
+  },
+  card: {
+    textAlign: "center",
+    padding: '3% 0% 3% 0%',
+    border: '1px solid #E0E0E0',
+    background: '#FFFFFF',
+    boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
+    width: '80%',
+    marginTop: '7%',
+    marginLeft: '10%'
+  },
+  p: {
+    fontWeight: 'bold'
+  },
+  titulo: {
+    fontWeight: 'bold',
+    fontSize: '50px'
   },
   link: {
     textDecoration: 'none'
   },
-  home: {
-    width: '70%',
-    marginLeft: '15%',
-    padding: '28%'
-  },
-  titulo: {
-    color: 'white',
-    textShadow: '3px 0 0 black, -3px 0 0 black, 0 3px 0 black, 0 -3px 0 black, 1.5px 1.5px black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black',
-    textAlign: 'center',
-    fontSize: '5.5em !important',
-    borderRadius: '15px',
-    width: '60%',
-    marginLeft: '20%',
-    backgroundColor: 'wheat'
+  pizza: {
+    padding: '2% 40% 0% 40%'
   }
 }));
 
@@ -32,20 +41,21 @@ export default function Home() {
   const classes = useStyles();
 
   useEffect(() => {
-    document.title = "IF Restaurante";
+    document.title = "Home";
   })
 
   return (
-    <>
-      <div className={classes.containerHome}>
-        <div className={classes.titulo}>
-          Instituto Federal da Santa Pizza
-        </div>
-        <div className={classes.home}>
-
-        </div>
-
+    <div className={classes.container}>
+      <div className={classes.card}>
+        <p className={classes.titulo}>Instituto Federal da Santa Pizza - IFSP</p>
+        <p className={classes.p}>O melhor da pizza está aqui!</p>
+        <A href="/sobre" className={classes.link}>
+          <Botao Primaria text="Quem somos"></Botao>
+        </A>
       </div>
-    </>
+      <div className={classes.pizza}>
+        <img src={Pizza} alt="pizza" width="300"></img>
+      </div>
+    </div>
   );
-} 
+}

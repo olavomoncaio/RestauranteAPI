@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import '../../estilos/estilosGlobais.css'
+import CrudCardapio from '../../componentes/CrudCardapio'
 
 const useStyles = makeStyles(tema => ({
     containerCardapio: {
     flexGrow: 1,
     fontFamily: tema.typography.fontFamily,
-    height: '1280px'
+    padding: '5% 10% 5% 10%'
   }
-
-
 }));
 
 export default function Cardapio() {
@@ -22,7 +21,7 @@ export default function Cardapio() {
   return (
     <>
       <div className={classes.containerCardapio}>
-    
+        <CrudCardapio></CrudCardapio>
       </div>
     </>
   );

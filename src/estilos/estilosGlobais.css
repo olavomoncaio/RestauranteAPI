@@ -8,7 +8,14 @@
     background-position: 50%;
 }
 
-.makeStyles-containerSobre-39 {
-    background-image: url("../imagens/bg_1.jpg")
-}
+@media (max-width: 1260px) 
+{
+  .makeStyles-drink-40 {
+    position: relative !important;
+    margin-top: 5%;
+   }
 
+  .makeStyles-imagem-41 {
+    width: 90%;
+   }
+}
