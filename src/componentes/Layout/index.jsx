@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Cabecalho from "../Cabecalho"
+import Rodape from "../Rodape"
 
 const useStyles = makeStyles(tema => ({
   container: {
@@ -17,6 +18,7 @@ export default function Layout({ children }) {
     <>
       <Cabecalho></Cabecalho>
       <Paper className={classes.container}>{children}</Paper>
+      <Rodape></Rodape>
     </>
   );
 }

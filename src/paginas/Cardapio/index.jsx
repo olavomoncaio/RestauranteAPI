@@ -5,11 +5,17 @@ import CrudCardapio from '../../componentes/CrudCardapio'
 import CrudBebida from '../../componentes/CrudBebida'
 
 const useStyles = makeStyles(tema => ({
-    containerCardapio: {
+  containerCardapio: {
     flexGrow: 1,
     fontFamily: tema.typography.fontFamily,
-    padding: '5% 10% 5% 10%'
+    padding: '5% 10% 5% 25%'
+  },
+  titulo: {
+    fontWeight: 'bold',
+    fontSize: '23px',
+    textDecoration: 'underline'
   }
+  
 }));
 
 export default function Cardapio() {
@@ -22,8 +28,80 @@ export default function Cardapio() {
   return (
     <>
       <div className={classes.containerCardapio}>
-        <CrudCardapio></CrudCardapio>
-        <CrudBebida></CrudBebida>
+        <div className="row">
+          <div className="col-md-5">
+            <div className={classes.titulo}>
+              Mussarela
+            </div>
+            <div className={classes.subtitulo}>
+              Mussarela, tomare e azeitonas.
+            </div>
+            <div className={classes.preco}>
+              R$ 39,90
+            </div>
+          </div>
+          <div className="col-md-5">
+          <div className={classes.titulo}>
+              Mussarela
+            </div>
+            <div className={classes.subtitulo}>
+              Mussarela, tomare e azeitonas.
+            </div>
+            <div className={classes.preco}>
+              R$ 39,90
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-5">
+          <div className={classes.titulo}>
+              Mussarela
+            </div>
+            <div className={classes.subtitulo}>
+              Mussarela, tomare e azeitonas.
+            </div>
+            <div className={classes.preco}>
+              R$ 39,90
+            </div>
+          </div>
+          <div className="col-md-5">
+          <div className={classes.titulo}>
+              Mussarela
+            </div>
+            <div className={classes.subtitulo}>
+              Mussarela, tomare e azeitonas.
+            </div>
+            <div className={classes.preco}>
+              R$ 39,90
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-5">
+          <div className={classes.titulo}>
+              Mussarela
+            </div>
+            <div className={classes.subtitulo}>
+              Mussarela, tomare e azeitonas.
+            </div>
+            <div className={classes.preco}>
+              R$ 39,90
+            </div>
+          </div>
+          <div className="col-md-5">
+          <div className={classes.titulo}>
+              Mussarela
+            </div>
+            <div className={classes.subtitulo}>
+              Mussarela, tomare e azeitonas.
+            </div>
+            <div className={classes.preco}>
+              R$ 39,90
+            </div>
+          </div>
+        </div>
+        {/* <CrudCardapio></CrudCardapio>
+        <CrudBebida></CrudBebida> */}
       </div>
     </>
   );
