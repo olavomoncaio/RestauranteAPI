@@ -20,9 +20,12 @@ const useStyles = makeStyles(tema => ({
     color: 'white',
     textShadow: '3px 0 0 black, -3px 0 0 black, 0 3px 0 black, 0 -3px 0 black, 1.5px 1.5px black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black',
     textAlign: 'center',
-    fontSize: '5.5em !important'
+    fontSize: '5.5em !important',
+    borderRadius: '15px',
+    width: '60%',
+    marginLeft: '20%',
+    backgroundColor: 'wheat'
   }
-
 }));
 
 export default function Home() {
