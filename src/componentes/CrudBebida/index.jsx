@@ -16,7 +16,7 @@ const useStyles = makeStyles(tema => ({
   },
 }));
 
-const CrudCardapio = () => {
+const CrudBebida = () => {
   const classes = useStyles();
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => {
@@ -40,18 +40,18 @@ const CrudCardapio = () => {
             {errors.nome && errors.nome.message}
           </div>
         </div>
-        <div className="col-md-5">
-          <label className={classes.label}>Ingredientes</label>
+        <div className="col-md-2">
+          <label className={classes.label}>Quantidade (Ml ou L)</label>
           <input
-            size="70"
+            size="10"
             className={classes.input}
-            name="ingredientes"
+            name="quantidade"
             ref={register({
               required: 'Este campo é obrigatório.',
             })}
           />
           <div className={classes.erros}>
-            {errors.ingredientes && errors.ingredientes.message}
+            {errors.quantidade && errors.quantidade.message}
           </div>
         </div>
       </div>
@@ -62,9 +62,9 @@ const CrudCardapio = () => {
         ref={register({
         })}
       />
-      <Botao Primaria text="Cadastrar Pizza" isSubmit></Botao>
+      <Botao Primaria text="Cadastrar Bebida" isSubmit></Botao>
     </form>
   );
 };
 
-export default CrudCardapio;
+export default CrudBebida;

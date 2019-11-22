@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import '../../estilos/estilosGlobais.css'
 import CrudCardapio from '../../componentes/CrudCardapio'
+import CrudBebida from '../../componentes/CrudBebida'
 
 const useStyles = makeStyles(tema => ({
     containerCardapio: {
@@ -22,6 +23,7 @@ export default function Cardapio() {
     <>
       <div className={classes.containerCardapio}>
         <CrudCardapio></CrudCardapio>
+        <CrudBebida></CrudBebida>
       </div>
     </>
   );
