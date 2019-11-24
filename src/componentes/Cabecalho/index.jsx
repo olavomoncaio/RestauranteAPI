@@ -21,7 +21,6 @@ export default function Cabecalho() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
           <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/pedido">Faça seu pedido</Nav.Link>
             <Nav.Link href="/cardapio">Cardápio</Nav.Link>
               <Nav.Link className={classes.link} href="/sobre">
                 Sobre

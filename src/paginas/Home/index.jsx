@@ -33,7 +33,7 @@ const useStyles = makeStyles(tema => ({
     textDecoration: 'none'
   },
   pizza: {
-    padding: '2% 40% 0% 40%'
+    padding: '2% 10% 0% 10%'
   }
 }));
 
@@ -54,7 +54,11 @@ export default function Home() {
         </A>
       </div>
       <div className={classes.pizza}>
-        <img src={Pizza} alt="pizza" width="300"></img>
+        <img src={Pizza} alt="pizza" width="20%"></img>
+        <img src={Pizza} alt="pizza" width="20%"></img>
+        <img src={Pizza} alt="pizza" width="20%"></img>
+        <img src={Pizza} alt="pizza" width="20%"></img>
+        <img src={Pizza} alt="pizza" width="20%"></img>
       </div>
     </div>
   );

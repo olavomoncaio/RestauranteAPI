@@ -11,12 +11,10 @@ const useStyles = makeStyles(tema => ({
     padding: '5% 10% 5% 10%'
   },
   drink: {
-    position: 'absolute',
-    right: '5%',
-    top: '15%'
+    marginTop: '5%',
   },
   imagem: {
-    bordeRadius: '50% !important',
+    borderRadius: '50px !important',
   }
 }));
 

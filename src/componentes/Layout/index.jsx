@@ -1,13 +1,19 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Cabecalho from "../Cabecalho"
 import Rodape from "../Rodape"
 
 const useStyles = makeStyles(tema => ({
-  container: {
-    minHeight: "73.3vh",
+  pagina: {
+    position: "relative",
+    paddingBottom: "16vh",
+    minHeight: "84h",
+    boxSizing: "border-box"
+  },
+  conteudo: {
+    minHeight: "84vh",
+    display: "flex",
   }
 }));
 
@@ -15,11 +21,12 @@ export default function Layout({ children }) {
   const classes = useStyles();
 
   return (
-    <>
+    <div className={classes.pagina}>
       <Cabecalho></Cabecalho>
-      <Paper className={classes.container}>{children}</Paper>
+      <div className={classes.conteudo}>{children}</div>
       <Rodape></Rodape>
-    </>
+    </div>
+
   );
 }
 
