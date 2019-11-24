@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import '../../estilos/estilosGlobais.css'
 import CrudCardapio from '../../componentes/CrudCardapio'
@@ -10,12 +10,12 @@ const useStyles = makeStyles(tema => ({
     flexGrow: 1,
     fontFamily: tema.typography.fontFamily,
     padding: '5% 10% 5% 25%',
-    minHeight: '100%'
+    minHeight: '100%',
   },
   titulo: {
     fontWeight: 'bold',
     fontSize: '23px',
-    
+
     color: '#4C7DB5'
   },
   crudcard: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles(tema => ({
     marginTop: "5%"
   },
   subtitulo: {
-    
+
     fontWeight: 'bold'
   },
   preco: {
@@ -51,99 +51,124 @@ const useStyles = makeStyles(tema => ({
   edit: {
     color: 'green',
     cursor: 'pointer'
+  },
+  sabores: {
+    backgroundColor: '#F4F2EC',
+    width: '50%',
+    padding: '5%'
   }
 }));
 
+function apagarPizza(nome) {
+  return alert(nome);
+}
+
+function apagarBebida(nome) {
+  return alert(nome);
+}
+
+
 export default function Cardapio() {
   const classes = useStyles();
+  const [pizzas, setPizzas] = useState();
+  const [bebidas, setBebidas] = useState();
+  const [usuario] = useLocalState('usuario');
+
+  function useLocalState(localItem) {
+    const [loc, setState] = useState(localStorage.getItem(localItem));
+
+    function setLoc(newItem) {
+      localStorage.setItem(localItem, newItem);
+      setState(newItem);
+    }
+
+    return [loc, setLoc];
+  }
+
 
   useEffect(() => {
     document.title = "Cardápio";
   })
 
+  useEffect(() => {
+    fetch('http://localhost:8080/pizza')
+      .then(response => {
+        response.json().then(data => {
+          setPizzas(data);
+        });
+      })
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/bebida')
+      .then(response => {
+        response.json().then(data => {
+          setBebidas(data);
+        });
+      })
+  }, []);
+
   return (
     <>
       <div className={classes.containerCardapio}>
         <p className={classes.setor}>Pizzas:  </p>
-        <div className="row">
-          <div className="col-md-5">
-            <div className={classes.titulo}>
-              Mussarela <span className={classes.delete}><Icon>clear</Icon></span><span className={classes.edit}><Icon>edit</Icon></span>
+        <div className={classes.sabores}>
+          {pizzas != null ? pizzas.map((pizza, i) =>
+            <div key={i}>
+              <div className="col-md-12">
+                <div className={classes.titulo}>
+                  {pizza.nome} <span className={classes.delete}>
+                    <Icon onClick={() => apagarPizza(pizza.id)}>clear</Icon></span>
+                  <span className={classes.edit}>
+                    <Icon>edit</Icon>
+                  </span>
+                </div>
+                <div className={classes.subtitulo}>
+                  {pizza.ingredientes}
+                </div>
+                <div className={classes.preco}>
+                  {pizza.preco}
+                </div>
+              </div>
+              <br />
             </div>
-            <div className={classes.subtitulo}>
-              Mussarela, tomare e azeitonas.
-            </div>
-            <div className={classes.preco}>
-              R$ 39,90
-            </div>
-          </div>
-          <div className="col-md-5">
-            <div className={classes.titulo}>
-              Mussarela
-            </div>
-            <div className={classes.subtitulo}>
-              Mussarela, tomare e azeitonas.
-            </div>
-            <div className={classes.preco}>
-              R$ 39,90
-            </div>
-          </div>
+          ) : null}
         </div>
-        <div className="row" id="pizzas">
-          <div className="col-md-5">
-            <div className={classes.titulo}>
-              Mussarela
-            </div>
-            <div className={classes.subtitulo}>
-              Mussarela, tomare e azeitonas.
-            </div>
-            <div className={classes.preco}>
-              R$ 39,90
-            </div>
-          </div>
-          <div className="col-md-5">
-            <div className={classes.titulo}>
-              Mussarela
-            </div>
-            <div className={classes.subtitulo}>
-              Mussarela, tomare e azeitonas.
-            </div>
-            <div className={classes.preco}>
-              R$ 39,90
-            </div>
-          </div>
-        </div>
+
         <p className={classes.setor2}>Bebidas:  </p>
-        <div className="row" id="pizzas">
-          <div className="col-md-5">
-            <div className={classes.titulo}>
-              Coca-Cola
+        <div className={classes.sabores}>
+          {bebidas != null ? bebidas.map((bebida, i) =>
+            <div key={i}>
+              <div className="col-md-12">
+                <div className={classes.titulo}>
+                  {bebida.nome} <span className={classes.delete}>
+                    <Icon onClick={() => apagarBebida(bebida.id)}>clear</Icon></span>
+                  <span className={classes.edit}>
+                    <Icon>edit</Icon>
+                  </span>
+                </div>
+                <div className={classes.subtitulo}>
+                  {bebida.quantidade}
+                </div>
+                <div className={classes.preco}>
+                  {bebida.preco}
+                </div>
+              </div>
+              <br />
             </div>
-            <div className={classes.subtitulo}>
-              2 Litros
-            </div>
-            <div className={classes.preco}>
-              R$ 12,90
-            </div>
-          </div>
-          <div className="col-md-5">
-            <div className={classes.titulo}>
-              Guaraná Antartica
-            </div>
-            <div className={classes.subtitulo}>
-              2 Litros
-            </div>
-            <div className={classes.preco}>
-              R$ 11,90
-            </div>
-          </div>
+          ) : null}
         </div>
-        <div className={classes.crudbebida}>
-          <CrudBebida></CrudBebida>
-        </div>
-        <div className={classes.crudcard}>
-          <CrudCardapio></CrudCardapio>
-        </div>
+        {usuario !== null ?
+          <>
+            <div className={classes.crudbebida}>
+              <CrudBebida></CrudBebida>
+            </div>
+            <div className={classes.crudcard}>
+              <CrudCardapio></CrudCardapio>
+            </div>
+          </> :
+          null}
+
 
       </div>
     </>

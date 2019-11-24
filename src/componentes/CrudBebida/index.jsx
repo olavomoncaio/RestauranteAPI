@@ -22,7 +22,7 @@ const useStyles = makeStyles(tema => ({
     borderRadius: '8px',
     width: '70%',
     marginTop: '7%',
-  },    
+  },
   titulo: {
     fontWeight: 'bold',
     fontSize: '35px'
@@ -34,6 +34,14 @@ const CrudBebida = () => {
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => {
     console.log(values);
+    fetch('http://localhost:8080/bebida', {
+      method: 'post',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(values)
+    })
   };
 
   return (
@@ -70,13 +78,34 @@ const CrudBebida = () => {
             </div>
           </div>
         </div>
-        <label className={classes.label}>Preço</label>
-        <input
-          className={classes.input}
-          name="preco"
-          ref={register({
-          })}
-        />
+        <div className="row">
+          <div className="col-md-9">
+            <label className={classes.label}>Preço</label>
+            <input
+              size="20"
+              className={classes.input}
+              name="preco"
+              ref={register({
+                required: 'Este campo é obrigatório.',
+              })}
+            />
+            <div className={classes.erros}>
+              {errors.preco && errors.preco.message}
+            </div>
+          </div>
+          <div className="col-md-5">
+            <label className={classes.label}>Disponivel</label>
+            <select
+              className={classes.input}
+              name="disponivel"
+              ref={register({
+              })}
+            >
+              <option value="true">Sim</option>
+              <option value="false">Não</option>
+            </select>
+          </div>
+        </div>
         <Botao Primaria text="Cadastrar Bebida" isSubmit></Botao>
       </form>
     </div>

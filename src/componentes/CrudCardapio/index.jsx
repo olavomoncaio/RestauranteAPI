@@ -34,6 +34,14 @@ const CrudCardapio = () => {
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => {
     console.log(values);
+    fetch('http://localhost:8080/pizza', {
+      method: 'post',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(values)
+    })
   };
 
   return (
@@ -66,7 +74,9 @@ const CrudCardapio = () => {
 
           </div>
         </div>
-        <label className={classes.label}>Ingredientes</label>
+        <div className="row">
+          <div className="col-md-9">
+            <label className={classes.label}>Ingredientes</label>
             <input
               size="50"
               className={classes.input}
@@ -78,7 +88,24 @@ const CrudCardapio = () => {
             <div className={classes.erros}>
               {errors.ingredientes && errors.ingredientes.message}
             </div>
-
+          </div>
+          <div className="col-md-5">
+            <label className={classes.label}>Disponivel</label>
+            <select
+              className={classes.input}
+              name="disponivel"
+              ref={register({
+                required: 'Este campo é obrigatório.',
+              })}
+            >
+              <option value="true">Sim</option>
+              <option value="false">Não</option>
+            </select>
+            <div className={classes.erros}>
+              {errors.disponivel && errors.disponivel.message}
+            </div>
+          </div>
+        </div>
         <Botao Primaria text="Cadastrar Pizza" isSubmit></Botao>
       </form>
     </div>
