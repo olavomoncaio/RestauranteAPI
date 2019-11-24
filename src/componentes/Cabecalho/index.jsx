@@ -29,6 +29,7 @@ export default function Cabecalho() {
           <Nav>
             <Nav.Link href="#deets">Olá, Nome do usuário</Nav.Link>
             <Nav.Link eventKey={2} href="/login">Login</Nav.Link>
+            <Nav.Link eventKey={2} href="/cadastro">Cadastro</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

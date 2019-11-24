@@ -44,8 +44,12 @@ const useStyles = makeStyles(tema => ({
     fontWeight: 'bold',
     textDecoration: 'underline',
   },
-  icone: {
+  delete: {
     color: 'red',
+    cursor: 'pointer'
+  },
+  edit: {
+    color: 'green',
     cursor: 'pointer'
   }
 }));
@@ -64,7 +68,7 @@ export default function Cardapio() {
         <div className="row">
           <div className="col-md-5">
             <div className={classes.titulo}>
-              Mussarela <span className={classes.icone}><Icon>clear</Icon></span>
+              Mussarela <span className={classes.delete}><Icon>clear</Icon></span><span className={classes.edit}><Icon>edit</Icon></span>
             </div>
             <div className={classes.subtitulo}>
               Mussarela, tomare e azeitonas.

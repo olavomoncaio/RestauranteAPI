@@ -7,6 +7,7 @@ import Sobre from "../paginas/Sobre";
 import Cardapio from "../paginas/Cardapio";
 import Pedido from "../paginas/Pedido";
 import Login from "../paginas/Login";
+import Cadastro from "../paginas/Cadastro";
 
 const rotas = {
   "/": () => <Home />,
@@ -14,7 +15,8 @@ const rotas = {
   "/sobre": () => <Sobre />,
   "/pedido": () => <Pedido />,
   "/cardapio": () => <Cardapio />,
-  "/login": () => <Login />
+  "/login": () => <Login />,
+  "/cadastro": () => <Cadastro />
 }
 
 export default function Rotas() {

@@ -4,6 +4,12 @@ import { A } from "hookrouter";
 import Botao from '../../componentes/Botao'
 
 const useStyles = makeStyles(tema => ({
+  containerNaoEncontrada: {
+    flexGrow: 1,
+    fontFamily: tema.typography.fontFamily,
+    padding: '20%%',
+    minHeight: '100%'
+  },
   anchor: {
     textDecoration: "none"
   },
@@ -32,7 +38,7 @@ const useStyles = makeStyles(tema => ({
 export default function PaginaNaoEncontrada() {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
+    <div className={classes.containerNaoEncontrada}>
       <div className={classes.naoEncontrada}>
       <p className={classes.p}>Ops...</p>
       <p className={classes.p}>A página não foi encontrada :(</p>
