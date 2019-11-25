@@ -9,11 +9,10 @@ const useStyles = makeStyles(tema => ({
   pagina: {
     position: "relative",
     paddingBottom: "16vh",
-    minHeight: "84h",
+    minHeight: "100vh",
     boxSizing: "border-box"
   },
   conteudo: {
-    minHeight: "84vh",
     display: "flex",
   }
 }));

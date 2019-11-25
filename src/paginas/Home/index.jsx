@@ -33,7 +33,8 @@ const useStyles = makeStyles(tema => ({
     textDecoration: 'none'
   },
   pizza: {
-    padding: '2% 10% 0% 10%'
+    padding: '2% 10% 0% 10%',
+    marginBottom: '3%'
   }
 }));
 

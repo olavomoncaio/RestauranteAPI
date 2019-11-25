@@ -8,17 +8,22 @@ const useStyles = makeStyles(tema => ({
   containerCardapio: {
     flexGrow: 1,
     fontFamily: tema.typography.fontFamily,
-    padding: '5% 10% 5% 10%'
+    padding: '0% 10% 0% 0%',
+    display: 'flex',
+    width: '100%'
   },
   drink: {
-    marginTop: '5%',
+    width: '100%'
   },
   imagem: {
-    borderRadius: '50px !important',
+   marginLeft: '-20%',
+   opacity: '0.8',
+   width: '92.7%'
+  },
+  login: {
+    marginTop: '10%'
   }
 }));
-
-
 
 export default function Login() {
   const classes = useStyles();
@@ -30,9 +35,11 @@ export default function Login() {
   return (
     <>
       <div className={classes.containerCardapio}>
-        <CrudLogin></CrudLogin>
         <div className={classes.drink}>
           <img src={Drinks} alt="drinks" className={classes.imagem}></img>
+        </div>
+        <div className={classes.login}>
+          <CrudLogin></CrudLogin>
         </div>
       </div>
     </>

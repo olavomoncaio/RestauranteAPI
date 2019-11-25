@@ -44,7 +44,7 @@ const CrudAdm = () => {
       <p className={classes.titulo}>Cadastro de Administrador</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Nome</label>
             <input
               size="35"
@@ -58,7 +58,7 @@ const CrudAdm = () => {
               {errors.nome && errors.nome.message}
             </div>
           </div>
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Email</label>
             <input
               size="35"
@@ -74,7 +74,7 @@ const CrudAdm = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Senha para Login</label>
             <input
               type="password"
@@ -89,7 +89,7 @@ const CrudAdm = () => {
               {errors.senhaLogin && errors.senhaLogin.message}
             </div>
           </div>
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Senha de Autorização</label>
             <input
               type="password"
@@ -107,7 +107,7 @@ const CrudAdm = () => {
         </div>
 
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Endereço</label>
             <input
               size="35"
@@ -121,7 +121,7 @@ const CrudAdm = () => {
               {errors.endereco && errors.endereco.message}
             </div>
           </div>
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Cargo</label>
             <input
               size="35"
@@ -138,7 +138,7 @@ const CrudAdm = () => {
         </div>
 
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Telefone</label>
             <input
               size="35"
@@ -152,7 +152,7 @@ const CrudAdm = () => {
               {errors.telefone && errors.telefone.message}
             </div>
           </div>
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Celular</label>
             <input
               size="35"

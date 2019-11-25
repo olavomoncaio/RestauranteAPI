@@ -13,13 +13,13 @@ const useStyles = makeStyles(tema => ({
   infos: {
     color: 'white',
     fontWeight: '500',
-    marginLeft: '45%'
+    marginLeft: '25%'
   },
   devs: {
     color: '#FF6339',
     fontWeight: 'bold',
-    marginTop: '7%',
-    marginLeft: '45%'
+    marginTop: '4%',
+    marginLeft: '25%'
   }
 }));
 
@@ -30,7 +30,7 @@ const Rodape = () => {
   return (
     <div className={footer}>
       <Grid container>
-        <Grid item xs={3} className={classes.gridStart}>
+        <Grid item xs={4} className={classes.gridStart}>
           <div className={classes.devs}>
             Contato:
           </div>
@@ -41,7 +41,7 @@ const Rodape = () => {
             ifspizzas@outlook.com
           </div>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
         <div className={classes.devs}>
             Atendimento:
         </div>

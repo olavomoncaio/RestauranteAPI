@@ -9,7 +9,7 @@ const useStyles = makeStyles(tema => ({
   containerCardapio: {
     flexGrow: 1,
     fontFamily: tema.typography.fontFamily,
-    padding: '5% 10% 5% 25%',
+    padding: '2% 10% 5% 0%',
     minHeight: '100%',
   },
   titulo: {
@@ -25,19 +25,18 @@ const useStyles = makeStyles(tema => ({
     fontWeight: 'bold',
     fontSize: '40px',
     color: '#FF6339',
-    marginLeft: '-10%',
-    marginBottom: '3%'
+    marginBottom: '3%',
+    marginLeft: '5%'
   },
   setor2: {
     fontWeight: 'bold',
     fontSize: '40px',
     color: '#FF6339',
-    marginLeft: '-10%',
     marginBottom: '3%',
-    marginTop: "5%"
+    marginTop: "5%",
+    marginLeft: '5%'
   },
   subtitulo: {
-
     fontWeight: 'bold'
   },
   preco: {
@@ -54,8 +53,21 @@ const useStyles = makeStyles(tema => ({
   },
   sabores: {
     backgroundColor: '#F4F2EC',
-    width: '50%',
-    padding: '5%'
+    width: '90%',
+    marginLeft: '5%',
+    padding: '5%',
+  },
+  card: {
+    //textAlign: "center",
+    padding: '3% 0% 3% 0%',
+    border: '1px solid #E0E0E0',
+    background: '#FFFFFF',
+    boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
+    width: '80%',
+    marginTop: '7%',
+    marginLeft: '15%',
+    marginBottom: '5%'
   }
 }));
 
@@ -91,7 +103,7 @@ export default function Cardapio() {
   })
 
   useEffect(() => {
-    fetch('http://localhost:8080/pizza')
+    fetch('http://www.mocky.io/v2/5ddbd3a23400005800eadf09')
       .then(response => {
         response.json().then(data => {
           setPizzas(data);
@@ -100,7 +112,7 @@ export default function Cardapio() {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:8080/bebida')
+    fetch('http://www.mocky.io/v2/5ddbd3a63400006a00eadf0a')
       .then(response => {
         response.json().then(data => {
           setBebidas(data);
@@ -111,65 +123,65 @@ export default function Cardapio() {
   return (
     <>
       <div className={classes.containerCardapio}>
-        <p className={classes.setor}>Pizzas:  </p>
-        <div className={classes.sabores}>
-          {pizzas != null ? pizzas.map((pizza, i) =>
-            <div key={i}>
-              <div className="col-md-12">
-                <div className={classes.titulo}>
-                  {pizza.nome} <span className={classes.delete}>
-                    <Icon onClick={() => apagarPizza(pizza.id)}>clear</Icon></span>
-                  <span className={classes.edit}>
-                    <Icon>edit</Icon>
-                  </span>
+        <div className={classes.card}>
+          <p className={classes.setor}>Pizzas  </p>
+          <div className={classes.sabores}>
+            {pizzas != null ? pizzas.map((pizza, i) =>
+              <div key={i}>
+                <div className="col-md-12">
+                  <div className={classes.titulo}>
+                    {pizza.nome} <span className={classes.delete}>
+                      <Icon onClick={() => apagarPizza(pizza.id)}>clear</Icon></span>
+                    <span className={classes.edit}>
+                      <Icon>edit</Icon>
+                    </span>
+                  </div>
+                  <div className={classes.subtitulo}>
+                    {pizza.ingredientes}
+                  </div>
+                  <div className={classes.preco}>
+                    R${pizza.preco}
+                  </div>
                 </div>
-                <div className={classes.subtitulo}>
-                  {pizza.ingredientes}
-                </div>
-                <div className={classes.preco}>
-                  {pizza.preco}
-                </div>
+                <br />
               </div>
-              <br />
-            </div>
-          ) : null}
-        </div>
+            ) : null}
+          </div>
 
-        <p className={classes.setor2}>Bebidas:  </p>
-        <div className={classes.sabores}>
-          {bebidas != null ? bebidas.map((bebida, i) =>
-            <div key={i}>
-              <div className="col-md-12">
-                <div className={classes.titulo}>
-                  {bebida.nome} <span className={classes.delete}>
-                    <Icon onClick={() => apagarBebida(bebida.id)}>clear</Icon></span>
-                  <span className={classes.edit}>
-                    <Icon>edit</Icon>
-                  </span>
+          <p className={classes.setor2}>Bebidas  </p>
+          <div className={classes.sabores}>
+            {bebidas != null ? bebidas.map((bebida, i) =>
+              <div key={i}>
+                <div className="col-md-12">
+                  <div className={classes.titulo}>
+                    {bebida.nome} <span className={classes.delete}>
+                      <Icon onClick={() => apagarBebida(bebida.id)}>clear</Icon></span>
+                    <span className={classes.edit}>
+                      <Icon>edit</Icon>
+                    </span>
+                  </div>
+                  <div className={classes.subtitulo}>
+                    {bebida.quantidade}
+                  </div>
+                  <div className={classes.preco}>
+                    RS{bebida.preco}
+                  </div>
                 </div>
-                <div className={classes.subtitulo}>
-                  {bebida.quantidade}
-                </div>
-                <div className={classes.preco}>
-                  {bebida.preco}
-                </div>
+                <br />
               </div>
-              <br />
-            </div>
-          ) : null}
+            ) : null}
+          </div>
+          {usuario !== null ?
+            <>
+              <div className={classes.crudbebida}>
+                <CrudBebida></CrudBebida>
+              </div>
+              <div className={classes.crudcard}>
+                <CrudCardapio></CrudCardapio>
+              </div>
+            </> :
+            null}
         </div>
-        {usuario !== null ?
-          <>
-            <div className={classes.crudbebida}>
-              <CrudBebida></CrudBebida>
-            </div>
-            <div className={classes.crudcard}>
-              <CrudCardapio></CrudCardapio>
-            </div>
-          </> :
-          null}
-
-
       </div>
     </>
   );
