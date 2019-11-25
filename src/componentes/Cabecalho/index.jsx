@@ -16,6 +16,11 @@ function viajar(caminho) {
   navigate(caminho);
 }
 
+function limparCache(){
+  localStorage.clear();
+  window.location.href = "http://localhost:3000";
+}
+
 export default function Cabecalho() {
   const [usuario] = useLocalState('usuario');
 
@@ -52,8 +57,8 @@ export default function Cabecalho() {
               </>
               :
               <>
-                <Nav.Link href="#deets">Olá, {usuario}</Nav.Link>
-                <Nav.Link href="#deets">Sair</Nav.Link>
+                <Nav.Link>Olá, {usuario}</Nav.Link>
+                <Nav.Link onClick={() => limparCache()}>Sair</Nav.Link>
               </>
             }
           </Nav>
