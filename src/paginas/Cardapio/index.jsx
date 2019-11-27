@@ -15,11 +15,7 @@ const useStyles = makeStyles(tema => ({
   titulo: {
     fontWeight: 'bold',
     fontSize: '23px',
-
     color: '#4C7DB5'
-  },
-  crudcard: {
-    marginTop: '5%'
   },
   setor: {
     fontWeight: 'bold',
@@ -68,22 +64,54 @@ const useStyles = makeStyles(tema => ({
     marginTop: '7%',
     marginLeft: '15%',
     marginBottom: '5%'
-  }
+  },
+  crudbebida: {
+    marginLeft: '10%'
+  },
+  crudcard: {
+    marginTop: '5%',
+    marginLeft: '10%'
+  },
 }));
 
-function apagarPizza(nome) {
-  return alert(nome);
+function apagarPizza(id, atualizarEstado) {
+  fetch(`http://localhost:8080/pizza/${id}`, {
+    method: 'delete',
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  }).then(response => {
+    if (response.ok) {
+      atualizarEstado();
+      window.scrollTo(0, 0);
+      alert("Pizza excluida!");
+    }
+  })
 }
 
-function apagarBebida(nome) {
-  return alert(nome);
+function apagarBebida(id, atualizarEstado) {
+  fetch(`http://localhost:8080/bebida/${id}`, {
+    method: 'delete',
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(id)
+  }).then(response => {
+    if (response.ok) {
+      atualizarEstado();
+      window.scrollTo(0, 0);
+      alert("Bebida excluida!");
+    }
+  })
 }
-
 
 export default function Cardapio() {
   const classes = useStyles();
   const [pizzas, setPizzas] = useState();
   const [bebidas, setBebidas] = useState();
+  const [bool, setBool] = useState(false);
   const [usuario] = useLocalState('usuario');
 
   function useLocalState(localItem) {
@@ -97,10 +125,13 @@ export default function Cardapio() {
     return [loc, setLoc];
   }
 
+  function atualizarEstado() {
+    setBool(!bool);
+  }
 
   useEffect(() => {
     document.title = "Cardápio";
-  })
+  }, [])
 
   useEffect(() => {
     fetch('http://localhost:8080/pizza')
@@ -109,7 +140,7 @@ export default function Cardapio() {
           setPizzas(data);
         });
       })
-  }, []);
+  }, [bool]);
 
   useEffect(() => {
     fetch('http://localhost:8080/bebida')
@@ -118,7 +149,7 @@ export default function Cardapio() {
           setBebidas(data);
         });
       })
-  }, []);
+  }, [bool]);
 
   return (
     <>
@@ -130,11 +161,16 @@ export default function Cardapio() {
               <div key={i}>
                 <div className="col-md-12">
                   <div className={classes.titulo}>
-                    {pizza.nome} <span className={classes.delete}>
-                      <Icon onClick={() => apagarPizza(pizza.id)}>clear</Icon></span>
+                    {pizza.nome}
+                    {usuario !== null ?
+                      <>
+                     <span className={classes.delete}>
+                      <Icon onClick={() => apagarPizza(pizza.id, atualizarEstado)}>clear</Icon></span>
                     <span className={classes.edit}>
                       <Icon>edit</Icon>
                     </span>
+                    </>
+                      : null}
                   </div>
                   <div className={classes.subtitulo}>
                     {pizza.ingredientes}
@@ -154,11 +190,16 @@ export default function Cardapio() {
               <div key={i}>
                 <div className="col-md-12">
                   <div className={classes.titulo}>
-                    {bebida.nome} <span className={classes.delete}>
-                      <Icon onClick={() => apagarBebida(bebida.id)}>clear</Icon></span>
-                    <span className={classes.edit}>
-                      <Icon>edit</Icon>
-                    </span>
+                    {bebida.nome}
+                    {usuario !== null ?
+                      <>
+                        <span className={classes.delete}>
+                          <Icon onClick={() => apagarBebida(bebida.id, atualizarEstado)}>clear</Icon></span>
+                        <span className={classes.edit}>
+                          <Icon>edit</Icon>
+                        </span>
+                      </>
+                      : null}
                   </div>
                   <div className={classes.subtitulo}>
                     {bebida.quantidade}
@@ -174,10 +215,10 @@ export default function Cardapio() {
           {usuario !== null ?
             <>
               <div className={classes.crudbebida}>
-                <CrudBebida></CrudBebida>
+                <CrudBebida atualizarEstado={atualizarEstado}></CrudBebida>
               </div>
               <div className={classes.crudcard}>
-                <CrudCardapio></CrudCardapio>
+                <CrudCardapio atualizarEstado={atualizarEstado}></CrudCardapio>
               </div>
             </> :
             null}

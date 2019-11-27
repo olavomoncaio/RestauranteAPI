@@ -29,7 +29,7 @@ const useStyles = makeStyles(tema => ({
   },
 }));
 
-const CrudBebida = () => {
+const CrudBebida = ({atualizarEstado}) => {
   const classes = useStyles();
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => {
@@ -42,6 +42,13 @@ const CrudBebida = () => {
       },
       body: JSON.stringify(values)
     })
+    .then(response => {
+      if (response.ok) {
+        atualizarEstado();
+        window.scrollTo(0, 0);
+        alert("Pizza cadastrada com sucesso!");
+      }
+    })
   };
 
   return (
@@ -49,7 +56,7 @@ const CrudBebida = () => {
       <p className={classes.titulo}>Cadastro de Bebidas</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Nome</label>
             <input
               size="35"
@@ -63,10 +70,10 @@ const CrudBebida = () => {
               {errors.nome && errors.nome.message}
             </div>
           </div>
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Quantidade (Ml ou L)</label>
             <input
-              size="20"
+              size="36"
               className={classes.input}
               name="quantidade"
               ref={register({
@@ -79,7 +86,7 @@ const CrudBebida = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-9">
+          <div className="col-md-6">
             <label className={classes.label}>Preço</label>
             <input
               size="20"
@@ -99,6 +106,7 @@ const CrudBebida = () => {
               className={classes.input}
               name="disponivel"
               ref={register({
+                required: 'Este campo é obrigatório.',
               })}
             >
               <option value="true">Sim</option>
@@ -106,6 +114,7 @@ const CrudBebida = () => {
             </select>
           </div>
         </div>
+        <br />
         <Botao Primaria text="Cadastrar Bebida" isSubmit></Botao>
       </form>
     </div>

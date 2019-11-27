@@ -46,10 +46,15 @@ const CrudLogin = () => {
         body: JSON.stringify(user)
       })
         .then(response => {
-          response.json().then(data => {
-            setUsuario(data.nome);
-            window.location.href = "http://localhost:3000";
-          });
+          if (response.ok) {
+            response.json().then(data => {
+              setUsuario(data.nome);
+              window.location.href = "http://localhost:3000";
+            });
+          }
+          else {
+            alert("Usuário e/ou senha inválido(s).")
+          }
         })
     }
   }
@@ -99,9 +104,7 @@ const CrudLogin = () => {
           </form>
         </div>
         :
-        <div className={classes.logado}>
-          Bem-vindo, {usuario}!
-       </div>
+        null
       }
     </>
   )

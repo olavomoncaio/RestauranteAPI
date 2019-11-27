@@ -37,6 +37,19 @@ const CrudAdm = () => {
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => {
     console.log(values);
+    fetch('http://localhost:8080/usuario', {
+      method: 'post',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(values)
+    })
+    .then(response => {
+      if (response.ok) {
+        window.location.href = "http://localhost:3000/"
+      }
+    })
   };
 
   return (
@@ -80,13 +93,13 @@ const CrudAdm = () => {
               type="password"
               size="35"
               className={classes.input}
-              name="senhaLogin"
+              name="senha"
               ref={register({
                 required: 'Este campo é obrigatório.',
               })}
             />
             <div className={classes.erros}>
-              {errors.senhaLogin && errors.senhaLogin.message}
+              {errors.senha && errors.senha.message}
             </div>
           </div>
           <div className="col-md-6">
@@ -164,6 +177,22 @@ const CrudAdm = () => {
             />
             <div className={classes.erros}>
               {errors.celular && errors.celular.message}
+            </div>
+          </div>
+          <div className="col-md-6">
+            <label className={classes.label}>Ativo</label>
+            <select
+              className={classes.input}
+              name="ativo"
+              ref={register({
+                required: 'Este campo é obrigatório.',
+              })}
+            >
+              <option value="true">Sim</option>
+              <option value="false">Não</option>
+            </select>
+            <div className={classes.erros}>
+              {errors.ativo && errors.ativo.message}
             </div>
           </div>
         </div>

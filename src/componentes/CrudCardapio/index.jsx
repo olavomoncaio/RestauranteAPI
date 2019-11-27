@@ -29,11 +29,10 @@ const useStyles = makeStyles(tema => ({
   }
 }));
 
-const CrudCardapio = () => {
+const CrudCardapio = ({atualizarEstado}) => {
   const classes = useStyles();
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => {
-    console.log(values);
     fetch('http://localhost:8080/pizza', {
       method: 'post',
       headers: {
@@ -42,6 +41,13 @@ const CrudCardapio = () => {
       },
       body: JSON.stringify(values)
     })
+    .then(response => {
+      if (response.ok) {
+        atualizarEstado();
+        window.scrollTo(0, 0);
+        alert("Pizza cadastrada com sucesso!");
+      }
+    })
   };
 
   return (
@@ -49,7 +55,7 @@ const CrudCardapio = () => {
       <p className={classes.titulo}>Cadastro de Pizzas</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Nome</label>
             <input
               size="35"
@@ -63,12 +69,13 @@ const CrudCardapio = () => {
               {errors.nome && errors.nome.message}
             </div>
           </div>
-          <div className="col-md-5">
+          <div className="col-md-6">
             <label className={classes.label}>Preço</label>
             <input
               className={classes.input}
               name="preco"
               ref={register({
+                required: 'Este campo é obrigatório.',
               })}
             />
 
@@ -106,6 +113,7 @@ const CrudCardapio = () => {
             </div>
           </div>
         </div>
+        <br />
         <Botao Primaria text="Cadastrar Pizza" isSubmit></Botao>
       </form>
     </div>
