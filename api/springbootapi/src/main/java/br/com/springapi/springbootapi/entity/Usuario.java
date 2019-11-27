@@ -34,7 +34,7 @@ public class Usuario
     @Column(nullable = false)
     private String celular;
 
-    @Column
+    @Column(nullable = false)
     private Boolean ativo;
 
     //Getters

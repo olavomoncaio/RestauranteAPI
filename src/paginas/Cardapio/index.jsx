@@ -103,7 +103,7 @@ export default function Cardapio() {
   })
 
   useEffect(() => {
-    fetch('http://www.mocky.io/v2/5ddbd3a23400005800eadf09')
+    fetch('http://localhost:8080/pizza')
       .then(response => {
         response.json().then(data => {
           setPizzas(data);
@@ -112,7 +112,7 @@ export default function Cardapio() {
   }, []);
 
   useEffect(() => {
-    fetch('http://www.mocky.io/v2/5ddbd3a63400006a00eadf0a')
+    fetch('http://localhost:8080/bebida')
       .then(response => {
         response.json().then(data => {
           setBebidas(data);

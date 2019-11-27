@@ -9,46 +9,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.springapi.springbootapi.entity.Bebida;
 import br.com.springapi.springbootapi.repository.BebidaRepository;
 
+@CrossOrigin
 @RestController
+@RequestMapping(value = "/bebida")
 public class BebidaController {
     @Autowired
     private BebidaRepository _bebidaRepository;
 
-    @CrossOrigin
-    @RequestMapping(value = "/bebida", method = RequestMethod.GET)
+    @GetMapping
     public List<Bebida> Get() {
         return _bebidaRepository.findAll();
     }
-
-    @CrossOrigin
-    @RequestMapping(value = "/bebida/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Bebida> GetById(@PathVariable(value = "id") long id)
-    {
-        Optional<Bebida> bebida = _bebidaRepository.findById(id);
-        if(bebida.isPresent())
-            return new ResponseEntity<Bebida>(bebida.get(), HttpStatus.OK);
-        else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "/bebida", method =  RequestMethod.POST)
+    
+    @PostMapping
     public Bebida Post(@Valid @RequestBody Bebida bebida)
     {
         return _bebidaRepository.save(bebida);
     }
-
-    @CrossOrigin
-    @RequestMapping(value = "/bebida/{id}", method =  RequestMethod.PUT)
+    
+    @PutMapping("/{id}")
     public ResponseEntity<Bebida> Put(@PathVariable(value = "id") long id, @Valid @RequestBody Bebida newBebida)
     {
         Optional<Bebida> oldBebida = _bebidaRepository.findById(id);
@@ -62,8 +53,7 @@ public class BebidaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "/bebida/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id)
     {
         Optional<Bebida> bebida = _bebidaRepository.findById(id);

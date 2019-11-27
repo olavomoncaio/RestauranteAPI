@@ -37,7 +37,14 @@ const CrudLogin = () => {
 
   function setar(user) {
     if (user) {
-      fetch('http://www.mocky.io/v2/5ddaf3c23100007a00605f05')
+      fetch('http://localhost:8080/usuario/login', {
+        method: 'post',
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+      })
         .then(response => {
           response.json().then(data => {
             setUsuario(data.nome);
@@ -48,7 +55,6 @@ const CrudLogin = () => {
   }
 
   const onSubmit = values => {
-    console.log(values);
     setar(values);
   };
 
