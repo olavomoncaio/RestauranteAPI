@@ -8,6 +8,7 @@ import Cardapio from "../paginas/Cardapio";
 import Pedido from "../paginas/Pedido";
 import Login from "../paginas/Login";
 import Cadastro from "../paginas/Cadastro";
+import EditPizza from "../componentes/PutCard"
 
 const rotas = {
   "/": () => <Home />,
@@ -16,7 +17,8 @@ const rotas = {
   "/pedido": () => <Pedido />,
   "/cardapio": () => <Cardapio />,
   "/login": () => <Login />,
-  "/cadastro": () => <Cadastro />
+  "/cadastro": () => <Cadastro />,
+  "/crudPizza/:id": ({id}) => <EditPizza id={id} />
 }
 
 export default function Rotas() {

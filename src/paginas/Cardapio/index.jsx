@@ -4,6 +4,7 @@ import '../../estilos/estilosGlobais.css'
 import CrudCardapio from '../../componentes/CrudCardapio'
 import CrudBebida from '../../componentes/CrudBebida'
 import Icon from '@material-ui/core/Icon';
+import { navigate } from "hookrouter";
 
 const useStyles = makeStyles(tema => ({
   containerCardapio: {
@@ -54,7 +55,6 @@ const useStyles = makeStyles(tema => ({
     padding: '5%',
   },
   card: {
-    //textAlign: "center",
     padding: '3% 0% 3% 0%',
     border: '1px solid #E0E0E0',
     background: '#FFFFFF',
@@ -129,6 +129,10 @@ export default function Cardapio() {
     setBool(!bool);
   }
 
+  function editarPizza(id){
+    navigate(`/crudPizza/${id}`);
+  }
+
   useEffect(() => {
     document.title = "Cardápio";
   }, [])
@@ -167,7 +171,7 @@ export default function Cardapio() {
                      <span className={classes.delete}>
                       <Icon onClick={() => apagarPizza(pizza.id, atualizarEstado)}>clear</Icon></span>
                     <span className={classes.edit}>
-                      <Icon>edit</Icon>
+                      <Icon onClick={() => editarPizza(pizza.id)}>edit</Icon>
                     </span>
                     </>
                       : null}
