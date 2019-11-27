@@ -130,7 +130,7 @@ export default function Cardapio() {
   }
 
   function editarPizza(id){
-    navigate(`/crudPizza/${id}`);
+    navigate("/crudPizza");
   }
 
   useEffect(() => {
