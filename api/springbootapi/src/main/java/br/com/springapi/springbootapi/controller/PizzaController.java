@@ -33,6 +33,11 @@ public class PizzaController {
         return _pizzaRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Optional<Pizza> GetById(@PathVariable(value = "id") long id) {
+        return _pizzaRepository.findById(id);
+    }
+    
     @PostMapping
     public Pizza Post(@Valid @RequestBody Pizza pizza)
     {
@@ -46,6 +51,9 @@ public class PizzaController {
         if(oldPizza.isPresent()){
             Pizza pizza = oldPizza.get();
             pizza.setNome(newPizza.getNome());
+            pizza.setIngredientes(newPizza.getIngredientes());
+            pizza.setPreco(newPizza.getPreco());
+            pizza.setDisponivel(newPizza.getDisponivel());
             _pizzaRepository.save(pizza);
             return new ResponseEntity<Pizza>(pizza, HttpStatus.OK);
         }

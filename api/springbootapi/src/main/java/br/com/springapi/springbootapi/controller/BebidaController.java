@@ -32,7 +32,13 @@ public class BebidaController {
     public List<Bebida> Get() {
         return _bebidaRepository.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Optional<Bebida> GetById(@PathVariable(value = "id") long id) {
+        return _bebidaRepository.findById(id);
+    }
     
+
     @PostMapping
     public Bebida Post(@Valid @RequestBody Bebida bebida)
     {
@@ -46,6 +52,9 @@ public class BebidaController {
         if(oldBebida.isPresent()){
             Bebida bebida = oldBebida.get();
             bebida.setNome(newBebida.getNome());
+            bebida.setQuantidade(newBebida.getQuantidade());
+            bebida.setPreco(newBebida.getPreco());
+            bebida.setDisponivel(newBebida.getDisponivel());
             _bebidaRepository.save(bebida);
             return new ResponseEntity<Bebida>(bebida, HttpStatus.OK);
         }
