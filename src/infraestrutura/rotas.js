@@ -9,6 +9,7 @@ import Pedido from "../paginas/Pedido";
 import Login from "../paginas/Login";
 import Cadastro from "../paginas/Cadastro";
 import EditPizza from "../componentes/PutCard"
+import EditBebida from "../componentes/PutBebida"
 
 const rotas = {
   "/": () => <Home />,
@@ -18,7 +19,8 @@ const rotas = {
   "/cardapio": () => <Cardapio />,
   "/login": () => <Login />,
   "/cadastro": () => <Cadastro />,
-  "/crudPizza/:id": ({id}) => <EditPizza id={id} />
+  "/crudPizza/:id": ({id}) => <EditPizza id={id} />,
+  "/crudBebida/:id": ({id}) => <EditBebida id={id} />
 }
 
 export default function Rotas() {

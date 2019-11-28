@@ -83,6 +83,7 @@ export default function Sobre() {
               HTML, CSS e Node. As APIs fazem todo o contato com o banco de dados, buscando e inserindo dados, também atualizando e excluindo,
               tendo os principais métodos de uma API, que são GET, POST, DELETE e PUT. O sistema possuí cruds para usuários comuns e para 
               administradores, que podem realizar inserções de pizzas no cardápio.
+              Os 3 desenvolvedores cuidaram de maneira conjunta de cada parte do projeto, pois este projeto foi um grande desafio para todos.
           </p>
           <div className={classes.imagem}>
             <img src={Pizza} alt="pizza" className={classes.pizza}></img>

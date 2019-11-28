@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import useForm from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
 import Botao from '../Botao/index'
+import { navigate } from "hookrouter";
 
 const useStyles = makeStyles(tema => ({
   label: {
@@ -29,26 +30,54 @@ const useStyles = makeStyles(tema => ({
   },
 }));
 
-const CrudBebida = ({atualizarEstado}) => {
+const CrudBebida = ({ atualizarEstado, bebida }) => {
   const classes = useStyles();
-  const { handleSubmit, register, errors } = useForm();
+  const { handleSubmit, register, errors, setValue } = useForm();
+
+  useEffect(() => {
+    if(bebida){
+      setValue('nome', bebida.nome);
+      setValue('quantidade', bebida.quantidade);
+      setValue('preco', bebida.preco);
+      setValue('disponivel', bebida.disponivel);
+    }
+  })
+
   const onSubmit = values => {
-    console.log(values);
-    fetch('http://localhost:8080/bebida', {
-      method: 'post',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(values)
-    })
-    .then(response => {
-      if (response.ok) {
-        atualizarEstado();
-        window.scrollTo(0, 0);
-        alert("Pizza cadastrada com sucesso!");
-      }
-    })
+    if (!bebida) {
+      console.log(values);
+      fetch('http://localhost:8080/bebida', {
+        method: 'post',
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      })
+        .then(response => {
+          if (response.ok) {
+            atualizarEstado();
+            window.scrollTo(0, 0);
+            alert("Bebida cadastrada com sucesso!");
+          }
+        })
+    }
+    else {
+      fetch(`http://localhost:8080/bebida/${bebida.id}`, {
+        method: 'put',
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      })
+        .then(response => {
+          if (response.ok) {
+            alert("Bebida atualizada com sucesso!");
+            navigate("/cardapio");
+          }
+        })
+    }
   };
 
   return (
@@ -115,7 +144,10 @@ const CrudBebida = ({atualizarEstado}) => {
           </div>
         </div>
         <br />
-        <Botao Primaria text="Cadastrar Bebida" isSubmit></Botao>
+        {!bebida ? <Botao Primaria text="Cadastrar Bebida" isSubmit></Botao>
+          :
+          <Botao Primaria text="Atualizar bebida" isSubmit></Botao>
+        }
       </form>
     </div>
   );

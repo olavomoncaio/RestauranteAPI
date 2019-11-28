@@ -58,7 +58,7 @@ const Rodape = () => {
           <div className={classes.infos}>
             Olavo Moncaio Grilenzoni - GU3002446<br />
             Igor Keiki Yamashita - GU3001644 <br />
-            Rafael Dionisio - GU300xxxx
+            Rafael Dionizio - GU3001628
           </div>
         </Grid>
       </Grid>

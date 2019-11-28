@@ -32,8 +32,17 @@ const useStyles = makeStyles(tema => ({
 
 const CrudCardapio = ({ atualizarEstado, pizza }) => {
   const classes = useStyles();
-  const { handleSubmit, register, errors } = useForm();
-  console.log(pizza);
+  const { handleSubmit, register, errors, setValue } = useForm();
+
+  useEffect(() => {
+    if(pizza){
+      setValue('nome', pizza.nome);
+      setValue('ingredientes', pizza.ingredientes);
+      setValue('preco', pizza.preco);
+      setValue('disponivel', pizza.disponivel);
+    }
+  })
+
   const onSubmit = values => {
     if (!pizza) {
       fetch('http://localhost:8080/pizza', {
@@ -64,15 +73,11 @@ const CrudCardapio = ({ atualizarEstado, pizza }) => {
         .then(response => {
           if (response.ok) {
             alert("Pizza atualizada com sucesso!");
-            navigate("/home");
+            navigate("/cardapio");
           }
         })
     }
   };
-
-  useEffect(() => {
-
-  })
 
   return (
     <div className={classes.card}>
@@ -138,7 +143,10 @@ const CrudCardapio = ({ atualizarEstado, pizza }) => {
           </div>
         </div>
         <br />
-        <Botao Primaria text="Cadastrar Pizza" isSubmit></Botao>
+        {!pizza ? <Botao Primaria text="Cadastrar Pizza" isSubmit></Botao>
+          :
+          <Botao Primaria text="Atualizar pizza" isSubmit></Botao>
+        }
       </form>
     </div>
   );

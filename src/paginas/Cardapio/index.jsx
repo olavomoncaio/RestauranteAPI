@@ -16,7 +16,8 @@ const useStyles = makeStyles(tema => ({
   titulo: {
     fontWeight: 'bold',
     fontSize: '23px',
-    color: '#4C7DB5'
+    color: '#4C7DB5',
+    display: 'flex'
   },
   setor: {
     fontWeight: 'bold',
@@ -72,6 +73,10 @@ const useStyles = makeStyles(tema => ({
     marginTop: '5%',
     marginLeft: '10%'
   },
+  indisponivel: {
+    fontSize: '11px',
+    color: 'red'
+  }
 }));
 
 function apagarPizza(id, atualizarEstado) {
@@ -130,7 +135,11 @@ export default function Cardapio() {
   }
 
   function editarPizza(id){
-    navigate("/crudPizza");
+    navigate(`/crudPizza/${id}`);
+  }
+
+  function editarBebida(id){
+    navigate(`/crudBebida/${id}`);
   }
 
   useEffect(() => {
@@ -165,7 +174,7 @@ export default function Cardapio() {
               <div key={i}>
                 <div className="col-md-12">
                   <div className={classes.titulo}>
-                    {pizza.nome}
+                    {pizza.nome} <div className={classes.indisponivel}>{pizza.disponivel === true ? null : "Indisponível"}</div>
                     {usuario !== null ?
                       <>
                      <span className={classes.delete}>
@@ -180,7 +189,7 @@ export default function Cardapio() {
                     {pizza.ingredientes}
                   </div>
                   <div className={classes.preco}>
-                    R${pizza.preco}
+                    R$ {pizza.preco}
                   </div>
                 </div>
                 <br />
@@ -194,13 +203,13 @@ export default function Cardapio() {
               <div key={i}>
                 <div className="col-md-12">
                   <div className={classes.titulo}>
-                    {bebida.nome}
+                    {bebida.nome}  <div className={classes.indisponivel}>{bebida.disponivel === true ? null : "Indisponível"}</div>
                     {usuario !== null ?
                       <>
                         <span className={classes.delete}>
                           <Icon onClick={() => apagarBebida(bebida.id, atualizarEstado)}>clear</Icon></span>
                         <span className={classes.edit}>
-                          <Icon>edit</Icon>
+                          <Icon onClick={() => editarBebida(bebida.id)}>edit</Icon>
                         </span>
                       </>
                       : null}
@@ -209,7 +218,7 @@ export default function Cardapio() {
                     {bebida.quantidade}
                   </div>
                   <div className={classes.preco}>
-                    RS{bebida.preco}
+                    R$ {bebida.preco}
                   </div>
                 </div>
                 <br />

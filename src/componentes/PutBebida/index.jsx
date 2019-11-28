@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CrudCardapio from '../../componentes/CrudCardapio'
+import CrudBebida from '../../componentes/CrudBebida'
 
 const useStyles = makeStyles(tema => ({
   container: {
@@ -10,26 +10,27 @@ const useStyles = makeStyles(tema => ({
   },
 }));
 
-export default function PutCard({id}) {
+export default function PutBebida({id}) {
   const classes = useStyles();
-  const [pizza, setPizza] = useState();
+  const [bebida, setBebida] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/pizza/${id}`)
+    fetch(`http://localhost:8080/bebida/${id}`)
       .then(response => {
         response.json().then(data => {
-          setPizza(data);
+          setBebida(data);
         });
       })
   }, [id]);
 
+  console.log(bebida);
   useEffect(() => {
     document.title = "Atualizar Pizza";
   })
 
   return (
     <div className={classes.container}>
-        <CrudCardapio pizza={pizza}></CrudCardapio>
+        <CrudBebida bebida={bebida}></CrudBebida>
     </div>
   );
 }

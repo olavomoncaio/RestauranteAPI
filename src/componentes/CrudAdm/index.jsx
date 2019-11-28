@@ -36,20 +36,24 @@ const CrudAdm = () => {
   const classes = useStyles();
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => {
-    console.log(values);
-    fetch('http://localhost:8080/usuario', {
-      method: 'post',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(values)
-    })
-    .then(response => {
-      if (response.ok) {
-        window.location.href = "http://localhost:3000/"
-      }
-    })
+    if (values.senhaAutorizacao === "admin") {
+      fetch('http://localhost:8080/usuario', {
+        method: 'post',
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      })
+        .then(response => {
+          if (response.ok) {
+            window.location.href = "http://localhost:3000/"
+          }
+        })
+    }
+    else {
+      alert("Senha administrativa incorreta!")
+    }
   };
 
   return (
